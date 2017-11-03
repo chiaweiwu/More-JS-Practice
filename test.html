@@ -1,0 +1,79 @@
+<script>
+
+class Clock {
+  constructor() {
+    let date = new Date();
+    this.hours = date.getHours();
+    this.minutes = date.getMinutes();
+    this.seconds = date.getSeconds();
+
+
+    setInterval(this._tick.bind(this), 1000);
+    // 1. Create a Date object.
+    // 2. Store the hours, minutes, and seconds.
+    // 3. Call printTime.
+    // 4. Schedule the tick at 1 second intervals.
+  }
+
+  printTime() {
+    let hoursm="";
+    let minutesm="";
+    let secondsm='';
+    // document.write(this.hours + ":" + this.minutes + ":" + this.seconds);
+    if (this.hours < 10) {
+        hoursm=`0${this.hours}`;
+    }
+    else{
+      hoursm=this.hours;
+    }
+
+    if (this.minutes < 10) {
+        minutesm=`0${this.minutes}`;
+    }
+    else{
+      minutesm=this.minutes;
+    }
+
+    if (this.seconds < 10) {
+        secondsm=`0${this.seconds}`;
+    }
+    else{
+      secondsm=this.seconds;
+    }
+    document.write(hoursm+":"+minutesm+":"+secondsm);
+    document.write("<br>");
+  }
+
+  _tick() {
+    this.addSeconds();
+    this.printTime();
+  }
+
+  addSeconds(){
+    this.seconds++;
+    if (this.seconds===60){
+      this.seconds=0;
+      this.addMinute();
+    }
+  }
+
+  addMinute(){+
+    this.minutes++;
+    if (this.minutes===60)
+      this.minutes=0;
+      this.addHour();
+  }
+
+  addHour(){
+    this.hours++;
+    if (this.hours===24){
+      this.hours=0;
+    }
+  }
+}
+
+const clock = new Clock();
+
+
+
+</script>
